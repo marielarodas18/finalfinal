@@ -1,0 +1,49 @@
+{% extends "base.html"%}
+{% block content%}
+<head>
+<link href="https://fonts.googleapis.com/css?family=Cormorant+Unicase|Jockey+One|Stardos+Stencil" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Nova+Round" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Ceviche+One|Marcellus+SC|New+Rocker|UnifrakturMaguntia" rel="stylesheet"> 
+</head>
+  <body style="background-color:#3d3d3d">
+      
+      
+      <nav class="navbar navbar-inverse" role="navigation">{% csrf_token %}
+          <ul class="nav navbar-nav"  style="padding-left:5px">
+              <li class="active" style="padding-right:5px;padding-top:5px;padding-bottom:5px"><a href="http://diegolguz.pythonanywhere.com/signup/"><p style="text-align:right" id="pub2"><input type=image src='static/imgs/art.png' class='btn btn-Default' width="65" height="50">&nbsp;Registrarse</p></a></li>
+              <li class="active " style="padding-top:5px;padding-bottom:5px" ><a href="http://diegolguz.pythonanywhere.com/login/"><p style="text-align:right" id="pub2"><input type=image src='static/imgs/mano.png' class='btn btn-Default' width="60" height="50">&nbsp;Iniciar Sesion</p></a></li>
+              
+          </ul>
+
+      </nav>
+ <ul id="carousel">
+  <li><img  alt="" src="static/imgs/head.jpg" class='img-responsive' /></li>
+  <li><img  alt="" src="static/imgs/met.jpg" class='img-responsive' /></li>
+  <li><img  alt="" src="static/imgs/pf.jpg" class='img-responsive' /></li>
+  <li><img  alt="" src="static/imgs/mh.jpg" class='img-responsive' /></li>
+</ul> <br>
+  <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+  <script src="http://notoyontoy.site40.net/Js/jquery.infinitecarousel3.min.js"></script>
+
+  <script type="text/javascript" src="http://notoyontoy.site40.net/Js/easing.js"></script>
+
+  <script>
+ var a = jQuery.noConflict();
+  a(document).ready(function() {
+  a('#carousel').infiniteCarousel({
+     transitionSpeed:4000,     /*Tiempo de avance de las imagenes*/
+     displayTime: 3000,   /* El tiempo en milisegundos para hacer pausa*/
+     thumbnailType: 'false',
+     customClass: 'myCarousel',
+     easeLeft: 'linear',
+     easeRight:'linear',
+     inView: 1,    /*Imagenes mostradas*/
+     advance: true,
+     autoPilot: true,
+     displayProgressRing: true,    /*muestra grafica del tiempo que pausa la imagen*/
+});
+});
+      </script>
+</body>
+{% endblock content%}

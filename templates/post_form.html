@@ -1,0 +1,44 @@
+{%extends "base.html"%}
+
+
+{% block content%} 
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Unicase|Jockey+One|Stardos+Stencil" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Ceviche+One|Marcellus+SC|New+Rocker|UnifrakturMaguntia" rel="stylesheet"> 
+</head>
+  <body style="background-color:#3d3d3d">
+       <nav class="navbar navbar-inverse" role="navigation">{% csrf_token %}
+          <ul class="nav navbar-nav"  style="padding-left:5px">
+              <li class="active" style="padding-right:5px;padding-top:5px;padding-bottom:5px"><a href="http://diegolguz.pythonanywhere.com/artista/"><p style="text-align:right" id="pub2">&nbsp;+ Artista</p></a></li>
+              <li class="active " style="padding-right:5px;padding-top:5px;padding-bottom:5px" ><a href="http://diegolguz.pythonanywhere.com/create/"><p style="text-align:right" id="pub2">&nbsp;+ Cancion</p></a></li>
+              <li class="active " style="padding-top:5px;padding-bottom:5px" ><a href="http://diegolguz.pythonanywhere.com/logout/"><p style="text-align:right" id="pub2">&nbsp;Cerrar Sesion</p></a></li>
+              <li class="active " style="padding-top:5px;padding-bottom:5px" ><h1 id="pub" style="margin-left:12cm;color:white;text-align:right;text-transform: uppercase;">&nbsp; {{usuario}}  </h1></li>
+              
+              
+           </ul>
+      </nav>
+<div class='page-header'>
+    <h1 id='head'>ROCKVOLUCION</h1>
+</div>
+<div class='col-sm-22 col-sm-offset-0'>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="thumbnail">
+          <!--<img src="..." alt="...">-->
+          <div class="caption">
+              <div id="cont">
+               <form  method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
+            {{form.as_p}}
+           <p> <input  type='submit' class='btn btn-Default' value ='Guardar'/>
+          <input  class='btn btn-Default' href="http://diegolguz.pythonanywhere.com/main/" value ='Inicio'></p>
+                   
+        </form> 
+                  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+</body>
+{% endblock content%}

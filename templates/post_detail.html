@@ -1,0 +1,75 @@
+{%extends "base.html"%}
+
+
+{% block head_title %}{{ instance.title }} | {{ block.super}}{% endblock head_title %}
+
+
+{% block content%}
+<head>
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Cormorant+Unicase|Jockey+One|Stardos+Stencil" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Ceviche+One|Marcellus+SC|New+Rocker|UnifrakturMaguntia" rel="stylesheet"> 
+</head>
+  <body style="background-color:#3d3d3d">
+     <nav class="navbar navbar-inverse" role="navigation">{% csrf_token %}
+          <ul class="nav navbar-nav"  style="padding-left:5px">
+              <li class="active" style="padding-right:5px;padding-top:5px;padding-bottom:5px"><a href="http://diegolguz.pythonanywhere.com/artista/"><p style="text-align:right" id="pub2">&nbsp;+ Artista</p></a></li>
+              <li class="active " style="padding-right:5px;padding-top:5px;padding-bottom:5px" ><a href="http://diegolguz.pythonanywhere.com/create/"><p style="text-align:right" id="pub2">&nbsp;+ Cancion</p></a></li>
+              <li class="active " style="padding-top:5px;padding-bottom:5px" ><a href="http://diegolguz.pythonanywhere.com/logout/"><p style="text-align:right" id="pub2">&nbsp;Cerrar Sesion</p></a></li>
+              <li class="active " style="padding-top:5px;padding-bottom:5px" ><h1 id="pub" style="margin-left:12cm;color:white;text-align:right;text-transform: uppercase;">&nbsp; {{usuario}}  </h1></li>
+              
+              
+          </ul>
+
+      </nav>
+<div class='page-header'>
+<h1 id='head'>{{instance.titulo}}</h1>
+</div>
+      
+<div class='col-sm-16 col-sm-offset-3'>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="thumbnail">      
+      <div class="caption">
+        <div>
+              <small id="usr" style="color:#9e9e9e;font-size:18px ">{{instance.timestamp}}</small>
+              {% if instance.imagen%}
+             <img src='{{ instance.imagen.url}}' class='img-responsive'/>
+             {% endif %}
+           <hr>
+               <div id='pub' style="background-color:#3d3d3d; padding-bottom:12px;padding-top:10px;padding-left:5px">
+               <a href="http://diegolguz.pythonanywhere.com/main/" class="btn" role="button">Inicio</a>
+                 {% ifequal instance.usuar usuario %}
+                  <a href="http://diegolguz.pythonanywhere.com/edit/{{instance.id}}/" class="btn" role="button">Editar</a>
+                  <a href="http://diegolguz.pythonanywhere.com/delete/{{instance.id}}/" class="btn btn-Danger" role="button">Eliminar</a>
+                  {% endifequal %}
+            </div>
+            <hr>
+             <div class='row'>
+                <p style="text-align:center"> 
+              <audio id="demo"  preload="auto" src='{{ instance.cancion.url}}' controls> </audio></p>
+            </div>
+            <hr>
+            <h id='cont'> {{instance.Letra|linebreaks}}</h>
+        
+            <br>
+          <hr>
+        
+            <h5 style="color:#9e9e9e">Actualizado: {{instance.updated}}</h5>
+            <hr>
+          <div class="fb-like" data-href="{{request.build_absolute_url}}" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true">
+          </div>
+              <div class='row'>
+                  <div class='col-sm-22'>
+                      <div class="fb-comments" data-href="{{request.build_absolute_url}}" data-numposts="5">
+                      </div>
+                  </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+</body>
+{% endblock content%}

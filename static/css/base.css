@@ -1,0 +1,79 @@
+#head{
+    text-align: center;
+    color:#f2f2ed;
+       font-family: 'New Rocker', cursive;
+}
+ .page-header {
+        background-color: #262626;
+        margin-top: 0;
+        padding: 20px 20px 20px 40px;
+    }
+
+    .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+        color: #ffffff;
+        font-size: 36pt;
+        text-decoration: none;
+    }
+#usr{
+    
+    font-family: 'Ceviche One', cursive;
+    font-size: 30px;
+    color:#6d0000;
+}
+#pub{
+    text-align: center;
+    font-family: 'New Rocker', cursive;
+    font-size: 25px;
+    color: black;
+}
+
+#pub2{
+    
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 25px;
+    color: white;
+}
+
+#cont {
+    text-align: center;
+    font-family: 'Marcellus SC', serif;
+    font-size: 20px;
+    color: black;
+}
+#contf {
+    text-align: justify;
+    font-family: 'Marcellus SC', serif;
+    font-size: 20px;
+    color: black;
+}
+
+.btn {
+background-color:white;
+    color:black;
+}
+
+.btn:hover {
+background-color:lightgray;
+}
+
+div.ic_myCarousel {
+
+    margin: 20px auto 0 auto;
+
+    clear:right;
+
+}
+
+.infiniteCarousel {
+
+    box-shadow: 0px 3px 3px #333;
+
+    border: 3px solid #333;
+
+}
+
+.ic_left_nav, .ic_right_nav {
+
+    display: none;
+
+} 

@@ -1,0 +1,110 @@
+{% extends "base.html"%}
+{% block content%}
+<head>
+<link href="https://fonts.googleapis.com/css?family=Cormorant+Unicase|Jockey+One|Stardos+Stencil" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Nova+Round" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Ceviche+One|Marcellus+SC|New+Rocker|UnifrakturMaguntia" rel="stylesheet"> 
+    
+</head>
+  <body style="background-color:#3d3d3d">
+      
+        <nav class="navbar navbar-inverse" role="navigation">{% csrf_token %}
+          <ul class="nav navbar-nav"  style="padding-left:5px">
+              <li class="active" style="padding-right:5px;padding-top:5px;padding-bottom:5px"><a href="http://diegolguz.pythonanywhere.com/artista/"><p style="text-align:right" id="pub2">&nbsp;+ Artista</p></a></li>
+              <li class="active " style="padding-right:5px;padding-top:5px;padding-bottom:5px" ><a href="http://diegolguz.pythonanywhere.com/create/"><p style="text-align:right" id="pub2">&nbsp;+ Cancion</p></a></li>
+              <li class="active " style="padding-top:5px;padding-bottom:5px" ><a href="http://diegolguz.pythonanywhere.com/logout/"><p style="text-align:right" id="pub2">&nbsp;Cerrar Sesion</p></a></li>           
+          </ul>
+            <h1 id="pub" style="text-align:right;padding-top:5px;padding-right:20px;padding-bottom:5px;color:white;text-align:right;text-transform: uppercase;">&nbsp; {{usuario}}  </h1>
+
+      </nav>
+      <nav class="navbar navbar-inverse" >{% csrf_token %}
+          <div style="text-align:right;padding-right:20px" >    
+              <form style="padding-top:10px" method="GET" action="">
+                  <input id='cont' style="width:350px; heigh:100px;text-align:left" type='text' name='q' value="{{request.GET.q}}" placeholder="Buscar cancion"/>
+                  
+                  <input id='pub' type='submit' value='Buscar'/>   
+              </form>
+          </div>
+
+      </nav>
+
+ <ul id="carousel">
+  <li><img  alt="" src="static/imgs/head.jpg" class='img-responsive' /></li>
+  <li><img  alt="" src="static/imgs/met.jpg" class='img-responsive' /></li>
+  <li><img  alt="" src="static/imgs/pf.jpg" class='img-responsive' /></li>
+  <li><img  alt="" src="static/imgs/mh.jpg" class='img-responsive' /></li>
+</ul> <br>
+<div class='col-sm-16 col-sm-offset-1.5' style="background-color:#000000">
+    {% for obj in object_list %}
+
+<div class="row" style="background-color:#262626">
+  <div class="col-sm-12" >
+    <div class="thumbnail">
+      <!--<img src="..." alt="...">-->
+        <small id='usr' style="color:black; font-size:25">{{obj.usuar}}  <p id='usr' style="align:right;font-size:20px; color:gray">{{obj.timestamp}}</p></small>
+          <h2 id='pub' style="font-size:45px; color:#5b0000" >{{obj.nombrealbum}}</h2>
+          <h2 id='pub' style="font-size:35px" ><a href="{{obj.get_absolute_url}}">{{obj.titulo}} </a></h2>
+          <h id='cont' > {{obj.Letra|linebreaks|truncatechars:130}} </h>
+          {% if obj.imagen %}
+          <p align="center"><img src='{{ obj.imagen.url}}' class='img-responsive'/></p><br>
+          {% endif %}
+          <div class='row'>
+          <p style="text-align:center"> 
+              <audio id="demo"  preload="metadata" src='{{ obj.cancion.url}}' controls> </audio></p>
+          </div>
+          <div class="fb-like" data-href="{{request.build_absolute_url}}" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+          <hr>
+          <div id='pub' style="background-color:#3d3d3d; padding-bottom:12px;padding-top:10px;padding-left:5px">
+          <a href="{{obj.get_absolute_url}}" class="btn" role="button">Ver Mas</a>
+         {% ifequal obj.usuar usuario %}
+          <a href="http://diegolguz.pythonanywhere.com/edit/{{obj.id}}/" class="btn" role="button">Editar</a>
+          <a href="http://diegolguz.pythonanywhere.com/delete/{{obj.id}}/" class="btn btn-Danger" role="button">Eliminar</a>
+          {% endifequal %}
+          </div><hr>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+</div>
+
+    
+<div class="pagination" style="color:white">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}&q={{ request.GET.q}}">next</a>
+        {% endif %}
+    </span>
+</div>    
+
+  <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+  <script src="http://notoyontoy.site40.net/Js/jquery.infinitecarousel3.min.js"></script>
+
+  <script type="text/javascript" src="http://notoyontoy.site40.net/Js/easing.js"></script>
+  <script>
+ var a = jQuery.noConflict();
+  a(document).ready(function() {
+  a('#carousel').infiniteCarousel({
+     transitionSpeed:4000,     /*Tiempo de avance de las imagenes*/
+     displayTime: 6000,   /* El tiempo en milisegundos para hacer pausa*/
+     thumbnailType: 'false',
+     customClass: 'myCarousel',
+     easeLeft: 'linear',
+     easeRight:'linear',
+     inView: 1,    /*Imagenes mostradas*/
+     advance: true,
+     autoPilot: true,
+     displayProgressRing: true,    /*muestra grafica del tiempo que pausa la imagen*/
+});
+});
+      </script>
+</body>
+{% endblock content%}
